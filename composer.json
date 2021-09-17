@@ -1,0 +1,31 @@
+{
+    "name": "samagtech/excel-lib",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SamagTech\\ExcelLib\\": "src/"
+        }
+    },
+    "scripts": {
+        "test" : "phpunit tests"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alessandro Marotta",
+            "email": "alessandro.marotta@samag.tech"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.18"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+
+}
