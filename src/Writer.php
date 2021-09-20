@@ -58,7 +58,7 @@ class Writer extends AbstractExcel {
      *
      * @return self
      */
-    public function setHeaders(array $headers) : self {
+    public function setHeader(array $headers) : self {
         $this->headers = $headers;
         return $this;
     }
@@ -84,7 +84,7 @@ class Writer extends AbstractExcel {
      *
      * @param bool  $isMultisheet   Flag che indica se è un esportazione multifoglio
      *
-     * @return string
+     * @return string   Path dove è stato creato il file
      */
     public function build(bool $isMultisheet = false) : string {
 

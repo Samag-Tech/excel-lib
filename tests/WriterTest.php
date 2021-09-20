@@ -32,7 +32,7 @@ class WriterTest extends TestCase {
 
         $this->writer->setFilename('export');
 
-        $excelPath = $this->writer->setHeaders($headers)
+        $excelPath = $this->writer->setHeader($headers)
             ->setBody($body)
             ->build();
 
@@ -80,7 +80,7 @@ class WriterTest extends TestCase {
             ]
         ];
 
-        $excelPath = $this->writer->setHeaders($headers)->setBody($body)->build(true);
+        $excelPath = $this->writer->setHeader($headers)->setBody($body)->build(true);
         $this->assertSame($excelPath, $this->writer->getPath().$this->writer->getFilename());
         $this->assertDirectoryExists($this->pathTestBuild);
         $this->assertFileExists($this->pathTestBuild.'/export_multisheet.xlsx');
@@ -120,7 +120,7 @@ class WriterTest extends TestCase {
             ]
         ];
 
-        $excelPath = $this->writer->setHeaders($headers)->setBody($body)->build(true);
+        $excelPath = $this->writer->setHeader($headers)->setBody($body)->build(true);
         $this->assertSame($excelPath, $this->writer->getPath().$this->writer->getFilename());
         $this->assertDirectoryExists($this->pathTestBuild);
         $this->assertFileExists($this->pathTestBuild.'/export_multisheet.xlsx');
