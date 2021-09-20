@@ -4,8 +4,21 @@
 Questa libreria è un wrapper per la libreria <a href="https://phpspreadsheet.readthedocs.io/en/latest/">PHPSpreadSheet</a>, una versione avanzata di PHPExcel che non ha problemi con versioni PHP 7.4+ ed è possibile installarla con
 
 ```bash
-    composer require samagtech\excel-lib
+composer require samagtech/excel-lib
 ```
+
+In caso di modifiche alla libreria e/o aggiunta di funzionalità consigliato lanciare/scrivere gli UnitTest per controllare l'integrità delle funzioni utilizzando il comando
+
+```bash
+composer test
+```
+
+Per installare PHPUnit (<a href="https://phpunit.readthedocs.io/en/9.5/">docs</a>) lanciare il comando
+```bash
+composer install --dev
+```
+
+Inoltre per gestire gli errori della libreria deve essere gestita l'eccezione <i>ExcelException</i>
 
 ## Creazione di un foglio Excel
 Per creare un Excel bisogna instanziare un oggetto <i>Writer</i> in questo modo:
