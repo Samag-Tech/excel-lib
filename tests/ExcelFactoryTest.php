@@ -19,12 +19,7 @@ class ExcelFactoryTest extends TestCase {
     //------------------------------------------------------------------------------
 
     public function testCreateReader() {
-
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-
-        $this->assertTrue($this->factory->createReader() instanceof Reader);
+        $this->assertTrue($this->factory->createReader('test', 'file.xlsx') instanceof Reader);
     }
 
     //------------------------------------------------------------------------------
