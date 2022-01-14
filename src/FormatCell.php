@@ -1,5 +1,6 @@
 <?php namespace SamagTech\ExcelLib;
 
+use DateTime;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -150,12 +151,29 @@ class FormatCell {
 
     }
 
-
-    //------------------------------------------------------------------------------
-    public function setDateFormat() {}
-    //------------------------------------------------------------------------------
-    public function setDateTimeFormat() {}
-
     //------------------------------------------------------------------------------
 
+    /**
+     * Formatta le date nel formato scelto
+     *
+     * @param string $date              Data da formattare
+     * @param string $currentFormat     Formato corrente
+     * @param string $newFormat         Nuovo formato
+     *
+     * @return string
+     */
+    public function setDateFormat(string $date, string $currentFormat, string $newFormat) {
+
+        $d = DateTime::createFromFormat($currentFormat, $date);
+
+        if ( $d && $d->format($currentFormat) == $date) {
+
+            $this->worksheet->setCellValue($this->index, $d->format($newFormat));
+        }
+        else {
+            throw new ExcelException('Formato della data non è valido');
+        }
+    }
+
+    //------------------------------------------------------------------------------
 }

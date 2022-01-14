@@ -26,6 +26,12 @@ class Writer extends AbstractExcel {
     /**
      * Lista delle definizioni dei formati delle colonne
      *
+     * Nel caso di chiavi 'date' o 'datetime' aggiungere le chiavi
+     * 'old_format' e 'new_format' per specificare il vecchio ed il
+     * nuovo formato, di default sono impostati a:
+     *  - date : old_format -> Y-m-d h:i:s, new_format -> d/m/Y h:i:s
+     *  - datetime : old_format -> Y-m-d h:i:s, new_format -> d/m/Y h:i:s
+     *
      * @access private
      * @var array<string, string>
      */
@@ -230,10 +236,19 @@ class Writer extends AbstractExcel {
                                 $this->formatCell->setPercentageFormat($value);
                             break;
                             case ExcelEnum::DEFINITION_DATE:
-                                $this->formatCell->setDateFormat($value);
+
+                                $oldFormat = $this->columnDefinition[$key]['old_format'] ?? 'Y-m-d';
+                                $newFormat = $this->columnDefinition[$key]['new_format'] ?? 'd/m/Y';
+
+
+                                $this->formatCell->setDateFormat($value, $oldFormat, $newFormat);
                             break;
                             case ExcelEnum::DEFINITION_DATETIME :
-                                $this->formatCell->setDateTimeFormat($value);
+
+                                $oldFormat = $this->columnDefinition[$key]['old_format'] ?? 'Y-m-d h:i:s';
+                                $newFormat = $this->columnDefinition[$key]['new_format'] ?? 'd/m/Y h:i:s';
+
+                                $this->formatCell->setDateFormat($value, $oldFormat, $newFormat );
                             break;
                         }
                     }
