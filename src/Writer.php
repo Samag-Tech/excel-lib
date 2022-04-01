@@ -72,6 +72,20 @@ class Writer extends AbstractExcel {
     //------------------------------------------------------------------------------
 
     /**
+     * Setta la definizione delle colonne
+     *
+     * @param string[]|array<string[]> $columnDefinition
+     *
+     * @return self
+     */
+    public function setColumnDefinition(array $columnDefinition) : self {
+        $this->columnDefinition = $columnDefinition;
+        return $this;
+    }
+
+    //------------------------------------------------------------------------------
+
+    /**
      * Setta il corpo del foglio
      *
      * @param array $body
