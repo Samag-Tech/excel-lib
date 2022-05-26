@@ -249,8 +249,17 @@ class Writer extends AbstractExcel {
                             case ExcelEnum::DEFINITION_PERCENTAGE :
                                 $this->formatCell->setPercentageFormat($value);
                             break;
-                            case ExcelEnum::DEFINITION_DATE:
 
+                        }
+                    }
+                    else if ( is_numeric($value) ) {
+                        $this->formatCell->setNumberFormat($value);
+                    }
+
+                    if ( isset($this->columnDefinition[$key]['type']) ) {
+
+                        switch ($this->columnDefinition[$key]['type'] ) {
+                            case ExcelEnum::DEFINITION_DATE:
                                 $oldFormat = $this->columnDefinition[$key]['old_format'] ?? 'Y-m-d';
                                 $newFormat = $this->columnDefinition[$key]['new_format'] ?? 'd/m/Y';
 
