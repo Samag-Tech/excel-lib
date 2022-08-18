@@ -51,8 +51,12 @@ class Writer extends AbstractExcel {
      * {@inheritDoc}
      *
      */
-    public function __construct(string $path, ?string $filename = null, ?array $ignoreFieldsFormat = null) {
-        parent::__construct($path, $filename, $ignoreFieldsFormat);
+    public function __construct(string $path, ?string $filename = null, ?array $ignoreFieldsFormat = null, string $config = Config::class, ?string $formatCell = null) {
+        parent::__construct($path, $filename, $ignoreFieldsFormat, $config);
+
+        $this->formatCell = ! is_null($formatCell) ?
+            new $formatCell($this->spreadsheet->setActiveSheetIndex(0), $this->config)
+            : new FormatCell($this->spreadsheet->setActiveSheetIndex(0), $this->config);
     }
 
     //------------------------------------------------------------------------------
@@ -194,7 +198,7 @@ class Writer extends AbstractExcel {
         $currentSheet->setTitle($sheetName);
 
         // Istanzio la classe per la formattazione della cella
-        $this->formatCell = new FormatCell($currentSheet, $this->config);
+        $this->formatCell->setWorksheet($currentSheet);
 
         /**
          * Se esiste l'intestazione viene generata
@@ -308,7 +312,9 @@ class Writer extends AbstractExcel {
         $column = 'A';
         $row    = 1;
 
-        $formatCell = new FormatCell($worksheet, $this->config);
+        $formatCell = $this->formatCell;
+
+        $formatCell->setWorksheet($worksheet);
 
         foreach ( $currentHeaders as $header) {
 

@@ -48,6 +48,19 @@ class FormatCell {
     //------------------------------------------------------------------------------
 
     /**
+     * Imposta il foglio su cui effettuare le operazioni
+     *
+     * @param Worksheet $worksheet
+     *
+     * @return void
+     */
+    public function setWorksheet(Worksheet $worksheet ) : void {
+        $this->worksheet = $worksheet;
+    }
+
+    //------------------------------------------------------------------------------
+
+    /**
      * Setta l'indice della cella
      *
      * @param string index  Indice corrente della cella

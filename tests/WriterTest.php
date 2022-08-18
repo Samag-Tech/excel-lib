@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use SamagTech\ExcelLib\ExcelEnum;
 use SamagTech\ExcelLib\ExcelException;
 
+require 'Utils/MyConfig.php';
+require 'Utils/MyFormatCell.php';
+
 class WriterTest extends TestCase {
 
     private string $pathTestBuild = './tests/export_test';
@@ -202,6 +205,27 @@ class WriterTest extends TestCase {
         $this->assertTrue($checkDate('d/m/Y',$data[1][0]));
         $this->assertTrue($checkDate('d/m/Y',$data[2][0]));
         $this->assertTrue($checkDate('Y-m-d',$data[3][0]));
+    }
+
+    //------------------------------------------------------------------------------
+
+    public function test_my_custom_config_and_format() {
+
+        $writer = new Writer($this->pathTestBuild, 'my_custom', config: MyConfig::class, formatCell: MyFormatCell::class);
+
+        $headers = ['A'];
+
+        $body = [
+            ['A1']
+        ];
+
+        $excelPath = $writer->setHeader($headers)
+            ->setBody($body)
+            ->build();
+
+        $this->assertSame($excelPath, $writer->getPath().$writer->getFilename());
+        $this->assertFileExists($this->pathTestBuild.'/my_custom.xlsx');
+
     }
 
     //------------------------------------------------------------------------------

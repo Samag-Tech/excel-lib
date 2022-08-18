@@ -17,8 +17,8 @@ class Factory {
      *
      * @return Writer
      */
-    public function createWriter(string $path, ?string $filename = null, ?array $ignoreFieldsFormat = null) : Writer {
-        return new Writer($path, $filename, $ignoreFieldsFormat);
+    public function createWriter(string $path, ?string $filename = null, ?array $ignoreFieldsFormat = null, string $config = Config::class, ?string $formatCell = null) : Writer {
+        return new Writer($path, $filename, $ignoreFieldsFormat, $config, $formatCell);
     }
 
     //------------------------------------------------------------------------------
