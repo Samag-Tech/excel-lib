@@ -236,7 +236,7 @@ class Writer extends AbstractExcel {
                 $this->formatCell->setBackground($row);
 
                 // Controllo se devo ignorare altre formattazioni
-                if ( ! in_array($key, $this->ignoreFieldsFormat) ) {
+                if ( ! in_array($key, $this->ignoreFieldsFormat) && !empty($value) ) {
 
                     /**
                      * Se per la colonna è stata settata definizione
