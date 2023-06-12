@@ -323,6 +323,8 @@ class Writer extends AbstractExcel {
             // Imposto il valore nella cella
             $worksheet->setCellValue($index, $header);
 
+            $worksheet->getColumnDimension($column)->setAutoSize(true);
+
             // Imposto il font
             $formatCell->setIndex($index);
             $formatCell->setBold();
